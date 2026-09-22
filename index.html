@@ -124,8 +124,9 @@
             <!-- Contenedor del Timeline donde se inyectarán los eventos y el cursor -->
             <div id="timeline-events" class="relative">
                 <!-- Cursor de línea de tiempo dinámico -->
-                <!-- Se ajusta la posición left para centrarlo en la línea según su ancho -->
-                <img id="time-cursor" src="cursor-linea-de-tiempo.png" alt="Cursor actual" class="absolute z-30 w-8 h-8 transition-all duration-1000 transform -translate-y-1/2 left-[23px] md:left-[27px] drop-shadow-md hidden" />
+                <div id="time-cursor" class="absolute z-30 w-24 h-24 transition-all duration-1000 transform -translate-y-1/2 left-[-8px] md:left-[-4px] bg-white rounded-full shadow-lg border-4 border-boda-gold hidden flex items-center justify-center p-1">
+                    <img src="cursor-linea-de-tiempo.png" alt="Cursor actual" class="w-full h-full object-cover rounded-full" />
+                </div>
                 
                 <!-- Los eventos se inyectarán aquí vía JS -->
             </div>
@@ -136,23 +137,23 @@
     <script>
         const currentYear = new Date().getFullYear();
         
-        // Array de eventos actualizados según instrucciones
+        // Array de eventos actualizados sin iconos
         const events = [
-            { id: 0, dateStr: `${currentYear}-09-21T20:00:00`, title: "Despedida de Soltero", day: "21 Sep", icon: "🍻", responsable: "Bianca" },
-            { id: 14, dateStr: `${currentYear}-09-22T11:00:00`, title: "Reparación de cámara", day: "22 Sep", icon: "📷", responsable: "Yoyo" },
-            { id: 15, dateStr: `${currentYear}-09-22T17:00:00`, title: "Pegado de medallitas", day: "22 Sep", icon: "🏅", responsable: "Mimi" },
-            { id: 2, dateStr: `${currentYear}-09-22T20:00:00`, title: "Despedida de soltera", day: "22 Sep", icon: "🥂", responsable: "Mimi" },
-            { id: 3, dateStr: `${currentYear}-09-24T10:30:00`, title: "Llegada a la iglesia", day: "24 Sep", icon: "⛪", responsable: "Novios, invitados" },
-            { id: 4, dateStr: `${currentYear}-09-24T11:00:00`, title: "Inicio de misa", day: "24 Sep", icon: "💍", responsable: "Padre Xavier" },
-            { id: 5, dateStr: `${currentYear}-09-24T11:45:00`, title: "Fin de misa", day: "24 Sep", icon: "🕊️", responsable: "Fotógrafo" },
-            { id: 6, dateStr: `${currentYear}-09-24T12:00:00`, title: "Llegada autobús", day: "24 Sep", icon: "🚌", responsable: "Yoyo/Transporte" },
-            { id: 7, dateStr: `${currentYear}-09-24T12:30:00`, title: "Salida de autobus", day: "24 Sep", icon: "🛣️", responsable: "Yoyo/Mimi" },
-            { id: 8, dateStr: `${currentYear}-09-24T13:00:00`, title: "Llegada a Restaurant", day: "24 Sep", icon: "🍽️", responsable: "Fotografo/Recepcion" },
-            { id: 9, dateStr: `${currentYear}-09-24T13:15:00`, title: "Brindis", day: "24 Sep", icon: "🥂", responsable: "Novios" },
-            { id: 10, dateStr: `${currentYear}-09-24T13:30:00`, title: "Inicio Comida", day: "24 Sep", icon: "🍴", responsable: "Restaurante" },
-            { id: 11, dateStr: `${currentYear}-09-24T15:00:00`, title: "Primer Baile", day: "24 Sep", icon: "💃🕺", responsable: "Novios" },
-            { id: 12, dateStr: `${currentYear}-09-24T18:00:00`, title: "Fin del evento", day: "24 Sep", icon: "✨", responsable: "Novios" },
-            { id: 13, dateStr: `${currentYear}-09-25T08:00:00`, title: "Luna de miel", day: "25 Sep", icon: "✈️", responsable: "Novios" }
+            { id: 0, dateStr: `${currentYear}-09-21T20:00:00`, title: "Despedida de Soltero", day: "21 Sep", responsable: "Bianca" },
+            { id: 14, dateStr: `${currentYear}-09-22T11:00:00`, title: "Reparación de cámara", day: "22 Sep", responsable: "Yoyo" },
+            { id: 15, dateStr: `${currentYear}-09-22T17:00:00`, title: "Pegado de medallitas", day: "22 Sep", responsable: "Mimi" },
+            { id: 2, dateStr: `${currentYear}-09-22T20:00:00`, title: "Despedida de soltera", day: "22 Sep", responsable: "Mimi" },
+            { id: 3, dateStr: `${currentYear}-09-24T10:30:00`, title: "Llegada a la iglesia", day: "24 Sep", responsable: "Novios, invitados" },
+            { id: 4, dateStr: `${currentYear}-09-24T11:00:00`, title: "Inicio de misa", day: "24 Sep", responsable: "Padre Xavier" },
+            { id: 5, dateStr: `${currentYear}-09-24T11:45:00`, title: "Fin de misa", day: "24 Sep", responsable: "Fotógrafo" },
+            { id: 6, dateStr: `${currentYear}-09-24T12:00:00`, title: "Llegada autobús", day: "24 Sep", responsable: "Yoyo/Transporte" },
+            { id: 7, dateStr: `${currentYear}-09-24T12:30:00`, title: "Salida de autobus", day: "24 Sep", responsable: "Yoyo/Mimi" },
+            { id: 8, dateStr: `${currentYear}-09-24T13:00:00`, title: "Llegada a Restaurant", day: "24 Sep", responsable: "Fotografo/Recepcion" },
+            { id: 9, dateStr: `${currentYear}-09-24T13:15:00`, title: "Brindis", day: "24 Sep", responsable: "Novios" },
+            { id: 10, dateStr: `${currentYear}-09-24T13:30:00`, title: "Inicio Comida", day: "24 Sep", responsable: "Restaurante" },
+            { id: 11, dateStr: `${currentYear}-09-24T15:00:00`, title: "Primer Baile", day: "24 Sep", responsable: "Novios" },
+            { id: 12, dateStr: `${currentYear}-09-24T18:00:00`, title: "Fin del evento", day: "24 Sep", responsable: "Novios" },
+            { id: 13, dateStr: `${currentYear}-09-25T08:00:00`, title: "Luna de miel", day: "25 Sep", responsable: "Novios" }
         ];
 
         // Convertimos las fechas a objetos Date reales
@@ -244,9 +245,6 @@
                         <div class="ml-[50px] md:ml-[60px] w-full max-w-md">
                             <div id="card-${ev.id}" class="bg-white/90 p-4 rounded-2xl shadow-sm border border-transparent transition-all duration-500">
                                 <div class="flex items-start gap-3 sm:gap-4">
-                                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-boda-cream flex items-center justify-center text-xl sm:text-2xl flex-shrink-0">
-                                        ${ev.icon}
-                                    </div>
                                     <div class="flex-1 min-w-0">
                                         <h3 class="font-serif text-lg sm:text-xl font-bold text-boda-text mb-1 leading-tight">${ev.title}</h3>
                                         <div class="flex flex-wrap gap-x-3 gap-y-1.5 text-xs sm:text-sm text-boda-lightText mb-2">
